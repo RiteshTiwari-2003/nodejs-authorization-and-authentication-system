@@ -55,3 +55,46 @@ when you run the server problem occur in mongodb connection and error shown in n
 newurlparser:true
 
 save the file and you can see our mongodb is connected
+now after connecting with mongodb we need to create user schema
+
+# create user model
+
+after successfully connection of mongodb you need to create user model or user schema
+you need to create folder model and in that folder cretae a file User.js, first import our mongoose in user.js,
+then create userschema using mongoose.Schema() method,
+using Mongoose.model function we create a model in which we give two parameter one is model name in String and one is scema which is created in same file.
+
+# crud operation
+
+in backend i use postman for request response from server to client means for api request we use postman
+in crud operation we basically perform these four operation (get,post,put,delete) cryd means create read update and delete
+for giving value to the server we use post method and after this when we create some user
+we use get method foe fetching reading the data, and if you update any id with given username then you can use put for updation and if you want to delete given id then you can use the delete command.
+
+we import connectDB database from config database.js file in server.js
+
+1. create user registration;
+   for this we create Auth folder in which we create Auth.js file in whihc we import model User.js
+   now we need to async express function that will take the user data and register in database, for that we need to go for server.js file and app.use(express.json()), save the file and again go to the auth file
+
+and create register function in Auth.js
+for accessing from other file we need to export this function using exports.register=async(req,res,next)=>{}
+also in Auth we create Route.js
+in Route.js
+we import express
+using
+const express=require("express");
+const router=express.Router();
+also import regiter from Auth in this route , also we exports route from this file to other file
+in server.js also we need to import route as a middleware
+app.use('/api/auth',require("./Auth/Route"));
+
+# postmen for crud operation request handling
+
+like in postman we first create collection , you can name new collection anything as you want like(Nodejs Auth)
+now in Nodejs Auth we click on 3 dot and click on add request
+you can name the request as you want like user registration, press enter you can pass the url , in request dropdown you choose post request
+in header we mention key as accept and value as a application/json ,
+and our url path is http://localhost:5000/api/auth/register/, now in write field write username and password in a object and send the request.
+
+# 2. create user login
