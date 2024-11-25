@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <ul></ul>
+    <script>
+        const ul=document.querySelector("ul");
+        const getUsers=async()=>{
+            const res=await fetch("/api/auth/getUsers");
+            const data=await res.json();
+            data.user.map(mappeduser=>{
+                if(mappeduser.username!=="admin"){
+                    let li=`<li><b>username</b>=>${mappeduser.username}<br/><b>role</b>=>${mappeduser.role}</li>`;
+                    ul.innerhtml+=li;
+                }else{
+                    return null;
+                }
+            })
+        }
+        getUsers();
+    </script>
+</body>
+</html>
