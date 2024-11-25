@@ -19,6 +19,7 @@ exports.register=async(req,res,next)=>{
         res.status(200).json({message:"user successfully created",user:user._id,token,});}).catch(error=>res.status(401).json({message:"user not successfully created",error:error.message,}));
     });
 };
+//for create user login we create login async function like register function
 exports.login=async(req,res,next)=>{
     const {username,password}=req.body;
     if(!username||!password){

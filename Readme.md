@@ -98,3 +98,10 @@ in header we mention key as accept and value as a application/json ,
 and our url path is http://localhost:5000/api/auth/register/, now in write field write username and password in a object and send the request.
 
 # 2. create user login
+
+now again go in post man for login user ,
+now we need to create another request user login it will be post request and url is http://localhost:5000/api/auth/login/,
+again in header we choose key as accept and value application/json, and in body section we cjhoose raw and json format choose in dropdown
+now paste same method as you wrote in register then send the request then output come a object of object, in which one key value is login is successfull
+
+# 3. update user
