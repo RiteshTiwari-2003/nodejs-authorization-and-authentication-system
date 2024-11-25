@@ -42,4 +42,16 @@ make a async function connectDB a async arrow function in which we call mongodb 
 # difference between database and schema
 
 database is any collection of data , a data in a database is usually organized in such a way that the information is easily accessible.
-a schema is basically a formal description of how a database is formed and where is everything located
+a schema is basically a formal description of how a database is formed and where is everything located.
+
+# how to use mongodb?
+
+go in mongodb atlas click on signin click on build a database , then you need to create a cluster ,
+you can name it anything, and then click on create cluster , you can create username and password for a database.
+after that you create your own user.
+for local envoirment use your own ip address
+go to the database , click on connect ,go to mongodb driver ,copy the url and paste that mongo_url in .env MONGO_URL variable
+when you run the server problem occur in mongodb connection and error shown in new url path so we need to remove key newurlpath
+newurlparser:true
+
+save the file and you can see our mongodb is connected

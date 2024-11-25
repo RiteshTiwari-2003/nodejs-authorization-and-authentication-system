@@ -5,7 +5,8 @@ require('dotenv').config();
 const {adminAuth,userAuth}=require('./middleware/auth');
 
 const app=express();
-const connectDB=require('./config/database');
+const connectDB=require('./config/database');//we are importing database in server.js
+
 connectDB();
 app.use(express.json());
 app.set("view engine","ejs");
@@ -32,6 +33,9 @@ app.get("/basic",userAuth,(req,res)=>res.send("user Route"));
 
 const PORT=process.env.PORT;
 const server=app.listen(PORT,()=>{console.log(`server is successfully run on ${PORT}`)});//on this port my server is running
+/**mongodb connection problem occur so for removing this problem we use below statement process.on that when any error come that error message print
+ * and server close and exit.
+ */
 process.on('unhandledRejection',err=>{//when error come in mongodb connect it print the error response and exit the server using server.exit(1)
     console.log(`error occured: ${err.message}`);
     server.close(()=>process.exit(1));
