@@ -128,3 +128,42 @@ jwt (json web token )
 session IDs
 
 . cookie-parser helps in securly reading these cookies and validating them during the authentication process.
+
+# all the data registered data show on the mongodb when i register the data
+
+when on registration page (localhost:5000/register when i put the username and password and click on register then all the registered value stored in mongodb)
+this is checked by when i come on mongodb atlas and click on build configuration then we go on test and click on user
+and we can see that all the registered data stored in object form in which keys are username in string format and password in encrypted format in string
+and role which is assigned to that user
+
+these are all registed data
+
+\_id:ObjectId('674441076efb1955f3184e85')
+username :"ritesh1"
+password: "$2a$10$76zgI15uZPkhjJl.Y84Q.eZuTSVOuvAnD6yfcWqXtdH3NDgvJhgyW"
+role: "Basic"
+\_\_v:0
+
+\_id:ObjectId('67444bb24cb45fe171272410')
+username: "ritesh12"
+password:"$2a$10$vgH/SN3jw5iuZswAnVKR9OFu6Cfn9MzvgpyW4oq2rmcry8WgrJlUC"
+role:"Basic"
+\_\_v:0
+
+\_id:Objectid('6744ad89f16dcbab85d11c14')
+username:"ritesh123"
+password:"$2a$10$viT/M32zBSQx/YdJ6isJAe87YOc0IuJxS7hOScOoqgam1f.YvC/36"
+role:"Basic"
+\_\_v:0
+
+\_id:ObjectId('6744ae2df16dcbab85d11c16')
+username:"ritesh1234"
+password:"$2a$10$DsVNK7yUPtJPwSZzD8FMvuaXpPsASCJw1dPhmR8HSYdAs416.06S2"
+role:"Basic"
+\_\_v:0
+
+\_id:ObjectId('6744c2ffa794605cdc44880d')
+username:"sfdfftyghyb"
+password:"$2a$10$fxcelcXG4ogftUc14FjWM.DgcyRLdbF9Hya2m3AIJ.H6VtERQ6eLa"
+role:"Basic"
+\_\_v:0
