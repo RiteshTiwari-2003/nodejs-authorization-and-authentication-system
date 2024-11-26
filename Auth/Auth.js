@@ -99,16 +99,22 @@ exports.deleteUser=async(req,res,next)=>{
     const {id}=req.body;
     await User.findById(id).then(user=>user.deleteOne()).then(user=>{res.status(201).json({message:"User successfully deleted",user})}).catch(error=>{res.status(400).json({message:"An error occured",error:error.message})});
 };
-exports.getUsers=async(req,res,next)=>{
-    await User.find({}).then((users)=>{
-        const userfunction=users.map((user)=>{
-            const container={};
-            container.username=user.username;
-            container.role=user.role;
-            return container;
-        })
-        res.status(200).json({user : userfunction});
-    })
-    .catch(err=>res.status(401).json({message:"not successfull",error:err.message}));
+exports.getUsers = async (req, res, next) => {
+    try {
+        let filter = {};
+        if (req.path === "/admin") {
+            filter = { role: "admin" };
+        }
+
+        const users = await User.find(filter);
+        const userList = users.map(user => ({
+            username: user.username,
+            role: user.role,
+        }));
+
+        return res.status(200).json({ users: userList });
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred", error: error.message });
+    }
 };
 

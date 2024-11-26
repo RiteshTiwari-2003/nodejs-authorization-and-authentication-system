@@ -3,6 +3,8 @@ const express=require("express");
 const router=express.Router();
 const {adminAuth,userAuth}=require("../middleware/auth");
 const {register,login,update,deleteUser,getUsers}=require('./Auth');
+router.get("/basic",getUsers);
+router.get("/admin",getUsers);
 
 router.route('/register').post(register);//lets create router for registration
 router.route('/login').post(login);//lets create router for login 
