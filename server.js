@@ -10,6 +10,7 @@ const connectDB=require('./config/database');//we are importing database in serv
 connectDB();
 app.use(express.json());
 app.set("view engine","ejs");
+app.set("views", "./views");
 app.get("/",(req,res)=>{res.render("home")});
 app.get("/register",(req,res)=>{res.render("register")});
 app.get("/login",(req,res)=>{res.render("login")});

@@ -35,7 +35,6 @@
                             method:"PUT",
                             body:JSON.stringify({role:"admin",id}),
                             headers:{'Content-Type':'application/json'},
-                            credentials:'include',
 
                         })
                         const dataUpdate=await res.json();
