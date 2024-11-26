@@ -25,29 +25,46 @@ exports.login=async(req,res,next)=>{
     if(!username||!password){
         return res.status(400).json({message:"Username and password is not provided"});
     }
-    try{
-        const user=await User.findOne({username});
-        if(!user){
-            res.status(401).json({message:"login is not successful",error:"user not found"});
+    try {
+        // Find user by username
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({ message: "Login not successful", error: "User not found" });
         }
-        else{
-            bcrypt.compare(password,user.password).then(function(result){ if(result){
-                const maxAge=3*60*60;
-            const token=jwt.sign({id:user._id,username,role:user.role},jwtSecret,{expiresIn:maxAge});
-            res.cookie("jwt",token,{
-            httpOnly:true,
-            maxAge:maxAge*1000,
-        });
-            res.status(200).json({message:"login is successful",user:user._id,token,})}
-            else{res.status(400).json({message:"Login not successfull"});}
-        });}
-    }
-    catch(error){
-        res.status(400).json({message:"Error occured",error:error.message});
-
+    // Compare passwords
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(401).json({ message: "Login not successful", error: "Invalid credentials" });
     }
 
+    // Generate token on successful login
+    const maxAge = 3 * 60 * 60; // 3 hours
+    const token = jwt.sign({ id: user._id, username, role: user.role }, jwtSecret, {
+        expiresIn: maxAge,
+    });
+
+    // Set cookie
+    res.cookie("jwt", token, {
+        httpOnly: true,
+        maxAge: maxAge * 1000,
+    });
+
+    // Send success response
+    return res.status(200).json({
+        message: "Login is successful",
+        user: user._id,
+        token,
+    });
+} catch (error) {
+    // Handle errors
+    return res.status(500).json({
+        message: "An error occurred during login",
+        error: error.message,
+    });
+}
 };
+
+
 exports.update=async(req,res,next)=>{
     const{role,id}=req.body;
     if(role&&id){
