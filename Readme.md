@@ -104,4 +104,27 @@ now we need to create another request user login it will be post request and url
 again in header we choose key as accept and value application/json, and in body section we cjhoose raw and json format choose in dropdown
 now paste same method as you wrote in register then send the request then output come a object of object, in which one key value is login is successfull
 
-# 3. update user
+also we update rthe user with the help of postman and delete the user
+
+# and i create the vies folder for frontend based wrok for displaying all the register login and admin page
+
+for this we use ejs extention ejs means ecma javascript engine
+
+# i use jwt token for authentication
+
+import jwt from "jsonwebtoken"
+
+# and also install cookie-parser for
+
+cookie parser generally used for managing the cookies sent byt the client to the server.
+1.parse cookies from http request:
+cookies are included in the cookie header of incoming http request.
+the cookie-parser middleware parses this header and makes the cookies available inn req.cookies as a javascript object.
+
+# 3. secure token for authorization
+
+in authentication workflow , cookies might store sensitive token like:
+jwt (json web token )
+session IDs
+
+. cookie-parser helps in securly reading these cookies and validating them during the authentication process.
